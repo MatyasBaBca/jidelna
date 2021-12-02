@@ -1,0 +1,10 @@
+parameters:
+
+
+database:
+	dsn: 'mysql:host=127.0.0.1;port=3367;dbname=order_system'
+	user: root
+	password: root
+
+
+

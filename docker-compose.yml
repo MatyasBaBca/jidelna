@@ -1,0 +1,20 @@
+version: '3.7'
+
+services: 
+    db:
+        image: mysql:8
+        volumes: 
+            - "data:/var/lib/mysql"
+        environment: 
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: order_system
+        ports:
+            - 3367:3306
+    adminer:
+        image: adminer:latest
+        restart: always
+        ports:
+            - 8081:8080
+
+volumes: 
+    data:
