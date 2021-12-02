@@ -1,7 +1,4 @@
 parameters:
-	google:
-		clientId: #fill
-		clientSecret: #fill
 
 
 database:

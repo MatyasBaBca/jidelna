@@ -4,3 +4,11 @@ services:
 	- App\Forms\SignInFormFactory
 	- App\Forms\SignUpFormFactory
 	- App\Router\RouterFactory::createRouter
+
+	oauth2.google.factory:
+		factory: App\OAuth\Google\GoogleProviderFactory(%google.clientId%, %google.clientSecret%)
+		autowired: false
+	
+	oauth2.google:
+		type: League\OAuth2\Client\Provider\Google
+		factory: @oauth2.google.factory::create()
