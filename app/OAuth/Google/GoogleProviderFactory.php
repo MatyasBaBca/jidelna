@@ -29,7 +29,7 @@ final class GoogleProviderFactory
 			'clientId' => $this->clientId,
 			'clientSecret' => $this->clientSecret,
 			'redirectUri' => $this->linkGenerator->link('Sign:google'),
+			'hostedDomain' => 'ossp.cz'
 		]);
 	}
-
 }

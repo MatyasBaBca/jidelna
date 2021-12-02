@@ -48,7 +48,6 @@ final class SignUpFormFactory
 				/** @var TextInput */
 				$username = $form->getComponent('username');
 				$username->addError('Username is already taken.');
-				//$form['username']->addError('Username is already taken.');
 				return;
 			}
 			$onSuccess();

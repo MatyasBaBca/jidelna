@@ -1,0 +1,17 @@
+<?php
+
+declare(strict_types=1);
+
+use App\Bootstrap;
+use Nette\Database\Connection;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$container = Bootstrap::boot()
+	->createContainer();
+
+/** @var Connection $db */
+$db = $container->getByType(Connection::class);
+
+$sql = file_get_contents(__DIR__ . '/../migration.sql');
+$db->query($sql);
