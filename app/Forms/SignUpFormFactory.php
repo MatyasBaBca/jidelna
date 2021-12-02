@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Forms;
 
-use App\Model;
+use App\Exception\DuplicateNameException;
+use App\Model\UserFacade;
 use Nette;
 use Nette\Application\UI\Form;
-
+use Nette\Forms\Controls\TextInput;
+use stdClass;
 
 final class SignUpFormFactory
 {
@@ -15,15 +17,13 @@ final class SignUpFormFactory
 
 	private FormFactory $factory;
 
-	private Model\UserFacade $userFacade;
+	private UserFacade $userFacade;
 
-
-	public function __construct(FormFactory $factory, Model\UserFacade $userFacade)
+	public function __construct(FormFactory $factory, UserFacade $userFacade)
 	{
 		$this->factory = $factory;
 		$this->userFacade = $userFacade;
 	}
-
 
 	public function create(callable $onSuccess): Form
 	{
@@ -41,11 +41,14 @@ final class SignUpFormFactory
 
 		$form->addSubmit('send', 'Sign up');
 
-		$form->onSuccess[] = function (Form $form, \stdClass $values) use ($onSuccess): void {
+		$form->onSuccess[] = function (Form $form, stdClass $values) use ($onSuccess): void {
 			try {
 				$this->userFacade->add($values->username, $values->email, $values->password);
-			} catch (Model\DuplicateNameException $e) {
-				$form['username']->addError('Username is already taken.');
+			} catch (DuplicateNameException $e) {
+				/** @var TextInput */
+				$username = $form->getComponent('username');
+				$username->addError('Username is already taken.');
+				//$form['username']->addError('Username is already taken.');
 				return;
 			}
 			$onSuccess();

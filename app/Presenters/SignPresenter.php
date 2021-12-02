@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Admin\Presenters;
+namespace App\Presenters;
 
-use App\Forms;
-use Nette;
+use App\Forms\SignInFormFactory;
+use App\Forms\SignUpFormFactory;
+use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
+use Nette\Application\UI\Presenter;
 
-
-final class SignPresenter extends Nette\Application\UI\Presenter
+final class SignPresenter extends Presenter
 {
-	/** @persistent */
+	#[Persistent]
 	public string $backlink = '';
 
-	private Forms\SignInFormFactory $signInFactory;
+	private SignInFormFactory $signInFactory;
 
-	private Forms\SignUpFormFactory $signUpFactory;
+	private SignUpFormFactory $signUpFactory;
 
 
-	public function __construct(Forms\SignInFormFactory $signInFactory, Forms\SignUpFormFactory $signUpFactory)
+	public function __construct(SignInFormFactory $signInFactory, SignUpFormFactory $signUpFactory)
 	{
 		$this->signInFactory = $signInFactory;
 		$this->signUpFactory = $signUpFactory;
 	}
-
 
 	/**
 	 * Sign-in form factory.
@@ -37,7 +37,6 @@ final class SignPresenter extends Nette\Application\UI\Presenter
 		});
 	}
 
-
 	/**
 	 * Sign-up form factory.
 	 */
@@ -47,7 +46,6 @@ final class SignPresenter extends Nette\Application\UI\Presenter
 			$this->redirect('Dashboard:');
 		});
 	}
-
 
 	public function actionOut(): void
 	{

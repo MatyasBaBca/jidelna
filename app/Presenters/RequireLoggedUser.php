@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Module\Admin\Presenters;
+namespace App\Presenters;
 
 
 trait RequireLoggedUser

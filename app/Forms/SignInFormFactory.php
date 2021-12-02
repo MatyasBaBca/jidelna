@@ -24,7 +24,6 @@ final class SignInFormFactory
 		$this->user = $user;
 	}
 
-
 	public function create(callable $onSuccess): Form
 	{
 		$form = $this->factory->create();

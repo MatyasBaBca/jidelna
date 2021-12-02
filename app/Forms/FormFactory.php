@@ -20,10 +20,9 @@ final class FormFactory
 		$this->user = $user;
 	}
 
-
 	public function create(): Form
 	{
-		$form = new Form;
+		$form = new Form();
 		if ($this->user->isLoggedIn()) {
 			$form->addProtection();
 		}

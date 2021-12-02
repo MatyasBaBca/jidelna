@@ -1,0 +1,16 @@
+includes:
+	- vendor/phpstan/phpstan-nette/extension.neon
+	- vendor/phpstan/phpstan-nette/rules.neon
+	- vendor/phpstan/phpstan-deprecation-rules/rules.neon
+	- vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+	paths:
+		- app
+	scanDirectories:
+		- app
+		# - vendor
+	bootstrapFiles:
+		- app/Bootstrap.php
+
+	level: max
