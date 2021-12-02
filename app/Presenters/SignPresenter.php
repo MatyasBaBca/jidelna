@@ -53,14 +53,14 @@ final class SignPresenter extends Presenter
 		$error = $this->getParameter('error');
 		if (!is_null($error)) {
 			$this->flashMessage('Google login failed', 'error');
-			$this->redirect('default');
+			$this->redirect('Dashboard:default');
 		}
 
 		$state = $this->getParameter('state');
 		$stateInSession = $this->getSession(Google::class)->state;
 		if (is_null($state) || is_null($stateInSession) || \hash_equals($stateInSession, $state)) {
 			$this->flashMessage('Invalid CSRF token', 'error');
-			$this->redirect('default');
+			$this->redirect('Dashboard:default');
 		}
 
 		unset($this->getSession(Google::class)->state);
@@ -75,7 +75,7 @@ final class SignPresenter extends Presenter
 			$googleUser = $this->google->getResourceOwner($accessToken);
 		} catch (Throwable $e) {
 			$this->flashMessage('Can not retrieve user profile', 'error');
-			$this->redirect('default');
+			$this->redirect('Dashboard:default');
 		}
 
 		$googleId = $googleUser->getId();
@@ -90,7 +90,7 @@ final class SignPresenter extends Presenter
 
 		$user = $this->userFacade->registerFromGoogle($googleUser);
 		$this->user->login($user->username);
-		$this->redirect('Homepage:');
+		$this->redirect('Dashboard:');
 	}
 
 	/**

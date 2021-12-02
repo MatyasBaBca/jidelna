@@ -1,7 +1,7 @@
 parameters:
 	google:
-		clientId: #fill
-		clientSecret: #fill
+		clientId: 201388687586-0f75tqn1vg0rn6k3ol547fom9puiftd0.apps.googleusercontent.com
+		clientSecret: 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
 
 
 database:

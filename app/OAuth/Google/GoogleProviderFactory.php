@@ -28,7 +28,7 @@ final class GoogleProviderFactory
 		return new Google([
 			'clientId' => $this->clientId,
 			'clientSecret' => $this->clientSecret,
-			'redirectUri' => $this->linkGenerator->link('Front:Login:google'),
+			'redirectUri' => $this->linkGenerator->link('Sign:google'),
 		]);
 	}
 

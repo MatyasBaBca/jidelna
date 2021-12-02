@@ -14,8 +14,10 @@ class Bootstrap
 		$configurator = new Configurator();
 		$appDir = dirname(__DIR__);
 
-		//$configurator->setDebugMode('secret@23.75.345.200'); // enable for your remote IP
+		$configurator->setDebugMode(true);
 		$configurator->enableTracy($appDir . '/log');
+		// Until thephpleague/oauth2-client fixes PHP 8.1 support.
+		error_reporting(error_reporting() & ~E_DEPRECATED);
 
 		$configurator->setTimeZone('Europe/Prague');
 		$configurator->setTempDirectory($appDir . '/temp');
