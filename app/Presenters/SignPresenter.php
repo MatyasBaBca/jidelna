@@ -30,11 +30,13 @@ final class SignPresenter extends Presenter
 	public function __construct(
 		SignInFormFactory $signInFactory,
 		SignUpFormFactory $signUpFactory,
-		UserFacade $userFacade
+		UserFacade $userFacade,
+		Google $google
 	) {
 		$this->signInFactory = $signInFactory;
 		$this->signUpFactory = $signUpFactory;
 		$this->userFacade = $userFacade;
+		$this->google = $google;
 	}
 
 	public function handleGoogleLogin(): void
